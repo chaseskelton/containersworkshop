@@ -64,6 +64,7 @@
     }
   },
   "variables": {
+    "srvStorageType": "Standard_LRS",
     "TemplateFolder": "nestedtemplates",
     "vNetTemplateFileName": "vNet.json",
     "DevWorkstationTemplateFileName": "VsDevWorkstation.json"
