@@ -64,7 +64,6 @@
     }
   },
   "variables": {
-    "srvStorageType": "Standard_LRS",
     "TemplateFolder": "nestedtemplates",
     "vNetTemplateFileName": "vNet.json",
     "DevWorkstationTemplateFileName": "VsDevWorkstation.json"
@@ -106,7 +105,6 @@
           "virtualNetworkName": { "value": "[parameters('vNetName')]" },
           "virtualNetworkResourceGroup": { "value": "[resourceGroup().name]" },
           "repoUri": { "value": "[parameters('repoUri')]" },
-          "dbSrvUri": { "value": "[ reference('SqlSrv').outputs.sqlSrvUri.value ]" },
           "dbName": {"value": "[parameters('databaseName')]"},
           "dbUserName": {"value": "[parameters('dbUserName')]"},
           "dbUserPassword": {"value": "[parameters('dbUserPassword')]"},
