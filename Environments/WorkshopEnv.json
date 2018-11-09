@@ -42,10 +42,6 @@
       "type": "string",
       "defaultValue": "partsUnlimitedDB"
     },
-    "dbUserDatabaseRole": {
-      "type": "string",
-      "defaultValue": "db_owner"
-    },
     "sqlSchemaScript": {
       "type": "string",
       "defaultValue": "https://raw.githubusercontent.com/karlrissland/AppWorkshop/master/IaaS2PaaSWeb/PartsUnlimitedDatabase/Migrations/0001_20170912-1438_karlriss.sql"
@@ -110,7 +106,6 @@
           "virtualNetworkName": { "value": "[parameters('vNetName')]" },
           "virtualNetworkResourceGroup": { "value": "[resourceGroup().name]" },
           "repoUri": { "value": "[parameters('repoUri')]" },
-          "webSrvUri" : { "value": "[ reference('WebSrv').outputs.webSrvUri.value ]" },
           "dbSrvUri": { "value": "[ reference('SqlSrv').outputs.sqlSrvUri.value ]" },
           "dbName": {"value": "[parameters('databaseName')]"},
           "dbUserName": {"value": "[parameters('dbUserName')]"},
