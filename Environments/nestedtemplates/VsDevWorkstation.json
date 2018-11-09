@@ -78,7 +78,7 @@
     "VsDevWorkstationPubIPDnsName": "[tolower(concat(parameters('VsDevWorkstationName'),uniqueString(resourceGroup().id)))]",
     "vsDevWorkstationConfigScriptFolder": "CustomScripts",
     "vsDevWorkstationConfigScriptFileName": "vsDevWorkstationConfig.ps1",
-    "powerShellExecuteCommandParams": "[concat(' -repoUri ',parameters('repoUri'), ' -adminUserName ', parameters('adminUserName'), ' -adminUserPassword ', parameters('adminUserPassword'), ' -webSrvUri ', parameters('webSrvUri'), ' -dbSrvUri ', parameters('dbSrvUri'), ' -dbName ', parameters('dbName'), ' -dbUserName ', parameters('dbUserName'), ' -dbUserPassword ', parameters('dbUserPassword'))]",
+    "powerShellExecuteCommandParams": "[concat(' -repoUri ',parameters('repoUri'), ' -adminUserName ', parameters('adminUserName'), ' -adminUserPassword ', parameters('adminUserPassword'))]",
     "powerShellExecuteCommandForBlobStorage": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('vsDevWorkstationConfigScriptFolder'), '/', variables('vsDevWorkstationConfigScriptFileName'), ' ', variables('powerShellExecuteCommandParams'))]",
     "powerShellExecuteCommandForURI": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('vsDevWorkstationConfigScriptFileName'), ' ', variables('powerShellExecuteCommandParams'))]",
     "powerShellExecuteCommand": "[if(contains(parameters('_artifactsLocation'),'.blob.core.windows.net'),variables('powerShellExecuteCommandForBlobStorage'),variables('powerShellExecuteCommandForURI'))]"
