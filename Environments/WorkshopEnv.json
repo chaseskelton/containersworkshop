@@ -56,7 +56,7 @@
     },
     "repoUri": {
       "type": "string",
-      "defaultValue": "https://github.com/karlrissland/AppWorkshop.git"
+      "defaultValue": "https://github.com/danielshue/containersworkshop.git"
     },
     "_artifactsLocation": {
       "type": "string",
