@@ -26,30 +26,6 @@
       "type": "string",
       "defaultValue":  "vmdev01"
     },
-    "dbLoginName": {
-      "type": "string",
-      "defaultValue": "workshopServiceAcc"
-    },
-    "dbUserName": {
-      "type": "string",
-      "defaultValue": "workshopServiceAcc"
-    },
-    "dbUserPassword": {
-      "type": "string",
-      "defaultValue": "Password$123"
-    },
-    "databaseName": {
-      "type": "string",
-      "defaultValue": "partsUnlimitedDB"
-    },
-    "sqlSchemaScript": {
-      "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/karlrissland/AppWorkshop/master/IaaS2PaaSWeb/PartsUnlimitedDatabase/Migrations/0001_20170912-1438_karlriss.sql"
-    },
-    "sqlDataScript": {
-      "type": "string",
-      "defaultValue": "https://raw.githubusercontent.com/karlrissland/AppWorkshop/master/IaaS2PaaSWeb/PartsUnlimitedDatabase/Post-Deployment/01_Finalize_Deployment.sql"
-    },
     "repoUri": {
       "type": "string",
       "defaultValue": "https://github.com/danielshue/containersworkshop.git"
@@ -106,9 +82,6 @@
           "virtualNetworkName": { "value": "[parameters('vNetName')]" },
           "virtualNetworkResourceGroup": { "value": "[resourceGroup().name]" },
           "repoUri": { "value": "[parameters('repoUri')]" },
-          "dbName": {"value": "[parameters('databaseName')]"},
-          "dbUserName": {"value": "[parameters('dbUserName')]"},
-          "dbUserPassword": {"value": "[parameters('dbUserPassword')]"},
           "_artifactsLocation": { "value": "[parameters('_artifactsLocation')]" },
           "_artifactsLocationSasToken": { "value": "[parameters('_artifactsLocationSasToken')]" }
         }
