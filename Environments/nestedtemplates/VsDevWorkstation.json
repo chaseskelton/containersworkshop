@@ -38,21 +38,6 @@
     "repoUri": {
       "type": "string"
     },
-    "webSrvUri": {
-      "type": "string"
-    },
-    "dbSrvUri": {
-      "type": "string"
-    },
-    "dbName": {
-      "type": "string"
-    },
-    "dbUserName": {
-      "type": "string"
-    },
-    "dbUserPassword": {
-      "type": "string"
-    },
     "_artifactsLocation": {
       "type": "string",
       "metadata": {
