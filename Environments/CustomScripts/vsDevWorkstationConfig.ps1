@@ -54,10 +54,10 @@ cd $env:TEMP
 Invoke-WebRequest -UseBasicParsing -OutFile docker-18.09.1.zip https://download.docker.com/components/engine/windows-server/18.09/docker-18.09.1.zip
 
 # Extract the archive.
-Expand-Archive docker-18.09.2.zip -DestinationPath $Env:ProgramFiles -Force
+Expand-Archive docker-18.09.1.zip -DestinationPath $Env:ProgramFiles -Force
 
 # Clean up the zip file.
-Remove-Item -Force docker-18.09.2.zip
+Remove-Item -Force docker-18.09.1.zip
 
 # Install Docker. This requires rebooting.
 $null = Install-WindowsFeature containers
