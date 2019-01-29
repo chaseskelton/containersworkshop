@@ -4,7 +4,7 @@
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-This allows you to deploy the workshop environment.  When complete, you should have a fully configured Development workstation in their own vNet and Resource group.
+This allows you to deploy the workshop environment.  When complete, you should have a fully configured Development workstation in it's own vNet and Resource group.
 
 ## Prerequisites
 
@@ -18,4 +18,4 @@ Enter vm admin username and password
 
 You can leave default values for the other parameters
 
-NOTE: do not change the value of _artifactsLocation or _artifactsLocationSas as the deployment will fail.
+NOTE: do not change the value of _artifactsLocation as the deployment will fail.
