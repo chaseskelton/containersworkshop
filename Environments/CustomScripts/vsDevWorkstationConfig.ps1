@@ -38,17 +38,44 @@ $env:Path += ";C:\Program Files\Microsoft SQL Server\130\Tools\Binn\"
 $env:Path += ";C:\Program Files\Git\cmd"
 
 ## Install Chocolatey and packages
-#Invoke-Expression ((New-Object Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 
+Invoke-Expression ((New-Object Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 
+
 ## Add startup bat to install additional packages on sign in
-#$choco_exe = "C:\ProgramData\chocolatey\bin\choco.exe"
-#$install_packages_bat = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\install_packages.bat"
+$choco_exe = "C:\ProgramData\chocolatey\bin\choco.exe"
+
+$install_packages_bat = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\install_packages.bat"
+
 #if (!(Test-Path $install_packages_bat)) {
 #	Set-Content -Path $install_packages_bat -Value "$choco_exe install postman googlechrome -y"
 #}
 
-# Install Hyper-V
-Install-WindowsFeature -Name Hyper-V -ComputerName $Env:COMPUTERNAME -IncludeManagementTools  
+$dockerPath = "$env:ProgramFiles\docker"
+if (!(Test-Path $dockerPath)) {
+	Set-Content -Path dockerPath -Value "$choco_exe install docker-desktop -y"
+}
 
-# Install Docker Modules
-Install-Module DockerMsftProvider -Force
-Install-Package Docker -ProviderName DockerMsftProvider -Force
+<#
+if (!(Test-Path $dockerPath)) {
+
+	$wshell = New-Object -ComObject Wscript.Shell -ErrorAction Stop
+	$wshell.Popup("Installing Hyper-V & Docker",0,"Note",0)
+
+	# Install Hyper-V
+	Install-WindowsFeature -Name Hyper-V -ComputerName $Env:COMPUTERNAME -IncludeManagementTools  
+
+	# Install Docker Modules
+	Install-Module DockerMsftProvider -Force
+	Install-Package Docker -ProviderName DockerMsftProvider -Force
+
+	# Optionally, modify PATH to persist across sessions.
+	$newPath = "$env:ProgramFiles\docker;" +
+	[Environment]::GetEnvironmentVariable("PATH",
+	[EnvironmentVariableTarget]::Machine)
+
+	[Environment]::SetEnvironmentVariable("PATH", $newPath,
+	[EnvironmentVariableTarget]::Machine)
+
+	$wshell.Popup("Now Rebooting",0,"Note",0)
+	Restart-Computer
+}
+#>
