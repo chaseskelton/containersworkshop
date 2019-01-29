@@ -38,43 +38,17 @@ $env:Path += ";C:\Program Files\Microsoft SQL Server\130\Tools\Binn\"
 $env:Path += ";C:\Program Files\Git\cmd"
 
 ## Install Chocolatey and packages
-Invoke-Expression ((New-Object Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 
+#Invoke-Expression ((New-Object Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 
 ## Add startup bat to install additional packages on sign in
-$choco_exe = "C:\ProgramData\chocolatey\bin\choco.exe"
-$install_packages_bat = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\install_packages.bat"
-if (!(Test-Path $install_packages_bat)) {
-	Set-Content -Path $install_packages_bat -Value "$choco_exe install postman googlechrome -y"
-}
+#$choco_exe = "C:\ProgramData\chocolatey\bin\choco.exe"
+#$install_packages_bat = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\install_packages.bat"
+#if (!(Test-Path $install_packages_bat)) {
+#	Set-Content -Path $install_packages_bat -Value "$choco_exe install postman googlechrome -y"
+#}
 
 # Install Hyper-V
+Install-WindowsFeature -Name Hyper-V -ComputerName $Env:COMPUTERNAME -IncludeManagementTools  
+
+# Install Docker Modules
 Install-Module DockerMsftProvider -Force
 Install-Package Docker -ProviderName DockerMsftProvider -Force
-
-cd $env:TEMP
-Invoke-WebRequest -UseBasicParsing -OutFile docker-18.09.1.zip https://download.docker.com/components/engine/windows-server/18.09/docker-18.09.1.zip
-
-# Extract the archive.
-Expand-Archive docker-18.09.1.zip -DestinationPath $Env:ProgramFiles -Force
-
-# Clean up the zip file.
-Remove-Item -Force docker-18.09.1.zip
-
-# Install Docker. This requires rebooting.
-$null = Install-WindowsFeature containers
-
-# Add Docker to the path for the current session.
-$env:path += ";$env:ProgramFiles\docker"
-
-# Optionally, modify PATH to persist across sessions.
-$newPath = "$env:ProgramFiles\docker;" +
-[Environment]::GetEnvironmentVariable("PATH",
-[EnvironmentVariableTarget]::Machine)
-
-[Environment]::SetEnvironmentVariable("PATH", $newPath,
-[EnvironmentVariableTarget]::Machine)
-
-# Register the Docker daemon as a service.
-dockerd --register-service
-
-# Start the Docker service.
-Start-Service docker
