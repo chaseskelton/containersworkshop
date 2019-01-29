@@ -45,3 +45,36 @@ $install_packages_bat = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\St
 if (!(Test-Path $install_packages_bat)) {
 	Set-Content -Path $install_packages_bat -Value "$choco_exe install postman googlechrome -y"
 }
+
+# Install Hyper-V
+Install-Module DockerMsftProvider -Force
+Install-Package Docker -ProviderName DockerMsftProvider -Force
+
+cd $env:TEMP
+Invoke-WebRequest -UseBasicParsing -OutFile docker-18.09.1.zip https://download.docker.com/components/engine/windows-server/18.09/docker-18.09.1.zip
+
+# Extract the archive.
+Expand-Archive docker-18.09.2.zip -DestinationPath $Env:ProgramFiles -Force
+
+# Clean up the zip file.
+Remove-Item -Force docker-18.09.2.zip
+
+# Install Docker. This requires rebooting.
+$null = Install-WindowsFeature containers
+
+# Add Docker to the path for the current session.
+$env:path += ";$env:ProgramFiles\docker"
+
+# Optionally, modify PATH to persist across sessions.
+$newPath = "$env:ProgramFiles\docker;" +
+[Environment]::GetEnvironmentVariable("PATH",
+[EnvironmentVariableTarget]::Machine)
+
+[Environment]::SetEnvironmentVariable("PATH", $newPath,
+[EnvironmentVariableTarget]::Machine)
+
+# Register the Docker daemon as a service.
+dockerd --register-service
+
+# Start the Docker service.
+Start-Service docker
