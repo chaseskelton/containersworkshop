@@ -28,15 +28,11 @@
     },
     "repoUri": {
       "type": "string",
-      "defaultValue": "https://github.com/danielshue/containersworkshop.git"
+      "defaultValue": "https://github.com/karlrissland/AppWorkshop.git"
     },
     "_artifactsLocation": {
       "type": "string",
       "defaultValue": "[uri(deployment().properties.templateLink.uri, '.')]"
-    },
-    "_artifactsLocationSasToken": {
-      "defaultValue": "",
-      "type": "securestring"
     }
   },
   "variables": {
@@ -54,7 +50,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('TemplateFolder'), '/', variables('vNetTemplateFileName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('TemplateFolder'), '/', variables('vNetTemplateFileName'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -66,11 +62,11 @@
       "name": "DevWorkstation",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2016-09-01",
-      "dependsOn": [ "vNetDeploy" ],
+      "dependsOn": [ "vNetDeploy"],
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('TemplateFolder'), '/', variables('DevWorkstationTemplateFileName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('TemplateFolder'), '/', variables('DevWorkstationTemplateFileName'))]",
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
@@ -82,8 +78,7 @@
           "virtualNetworkName": { "value": "[parameters('vNetName')]" },
           "virtualNetworkResourceGroup": { "value": "[resourceGroup().name]" },
           "repoUri": { "value": "[parameters('repoUri')]" },
-          "_artifactsLocation": { "value": "[parameters('_artifactsLocation')]" },
-          "_artifactsLocationSasToken": { "value": "[parameters('_artifactsLocationSasToken')]" }
+          "_artifactsLocation": { "value": "[parameters('_artifactsLocation')]" }
         }
       }
     }

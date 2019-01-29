@@ -43,19 +43,13 @@
       "metadata": {
         "description": "Auto-generated container in staging storage account to receive post-build staging folder upload"
       }
-    },
-    "_artifactsLocationSasToken": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Auto-generated token to access _artifactsLocation"
-      }
     }
   },
   "variables": {
     "VsDevWorkstationImagePublisher": "MicrosoftVisualStudio",
     "VsDevWorkstationImageOffer": "VisualStudio",
     "VsDevWorkstationOSDiskName": "VsDevWorkstationOSDisk",
-    "VsDevWorkstationVmSize": "Standard_D2_v2",
+    "VsDevWorkstationVmSize": "Standard_D2_v3",
     "VsDevWorkstationVnetID": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "VsDevWorkstationSubnetRef": "[concat(variables('VsDevWorkstationVnetID'), '/subnets/', 'Subnet-1')]",
     "VsDevWorkstationNicName": "[concat(parameters('VsDevWorkstationName'), 'NetworkInterface')]",
@@ -63,7 +57,7 @@
     "VsDevWorkstationPubIPDnsName": "[tolower(concat(parameters('VsDevWorkstationName'),uniqueString(resourceGroup().id)))]",
     "vsDevWorkstationConfigScriptFolder": "CustomScripts",
     "vsDevWorkstationConfigScriptFileName": "vsDevWorkstationConfig.ps1",
-    "powerShellExecuteCommandParams": "[concat(' -repoUri ',parameters('repoUri'), ' -adminUserName ', parameters('adminUserName'), ' -adminUserPassword ', parameters('adminUserPassword'))]",
+    "powerShellExecuteCommandParams": "[concat(' -repoUri ',parameters('repoUri'))]",
     "powerShellExecuteCommandForBlobStorage": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('vsDevWorkstationConfigScriptFolder'), '/', variables('vsDevWorkstationConfigScriptFileName'), ' ', variables('powerShellExecuteCommandParams'))]",
     "powerShellExecuteCommandForURI": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('vsDevWorkstationConfigScriptFileName'), ' ', variables('powerShellExecuteCommandParams'))]",
     "powerShellExecuteCommand": "[if(contains(parameters('_artifactsLocation'),'.blob.core.windows.net'),variables('powerShellExecuteCommandForBlobStorage'),variables('powerShellExecuteCommandForURI'))]"
@@ -158,7 +152,7 @@
             "autoUpgradeMinorVersion": true,
             "settings": {
               "fileUris": [
-                "[concat(parameters('_artifactsLocation'), '/', variables('vsDevWorkstationConfigScriptFolder'), '/', variables('vsDevWorkstationConfigScriptFileName'), parameters('_artifactsLocationSasToken'))]"
+                "[concat(parameters('_artifactsLocation'), '/', variables('vsDevWorkstationConfigScriptFolder'), '/', variables('vsDevWorkstationConfigScriptFileName'))]"
               ],
               "commandToExecute": "[variables('powerShellExecuteCommand')]"
             }
