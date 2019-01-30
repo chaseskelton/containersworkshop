@@ -47,35 +47,7 @@ $install_packages_bat = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\St
 
 if (!(Test-Path $install_packages_bat)) {
 	Set-Content -Path $install_packages_bat -Value "$choco_exe install docker-desktop postman googlechrome -y"
-}
-
-#$dockerPath = "$env:ProgramFiles\docker"
-#if (!(Test-Path $dockerPath)) {
-#	Set-Content -Path dockerPath -Value "$choco_exe install docker-desktop -y"
-#}
-
-<#
-if (!(Test-Path $dockerPath)) {
-
 	$wshell = New-Object -ComObject Wscript.Shell -ErrorAction Stop
-	$wshell.Popup("Installing Hyper-V & Docker",0,"Note",0)
-
-	# Install Hyper-V
-	Install-WindowsFeature -Name Hyper-V -ComputerName $Env:COMPUTERNAME -IncludeManagementTools  
-
-	# Install Docker Modules
-	Install-Module DockerMsftProvider -Force
-	Install-Package Docker -ProviderName DockerMsftProvider -Force
-
-	# Optionally, modify PATH to persist across sessions.
-	$newPath = "$env:ProgramFiles\docker;" +
-	[Environment]::GetEnvironmentVariable("PATH",
-	[EnvironmentVariableTarget]::Machine)
-
-	[Environment]::SetEnvironmentVariable("PATH", $newPath,
-	[EnvironmentVariableTarget]::Machine)
-
-	$wshell.Popup("Now Rebooting",0,"Note",0)
+	$wshell.Popup("Click OK to restart your Virtual Machine Rebooting",0,"Install Script",0)
 	Restart-Computer
 }
-#>
