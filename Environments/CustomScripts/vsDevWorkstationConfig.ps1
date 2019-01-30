@@ -45,14 +45,14 @@ $choco_exe = "C:\ProgramData\chocolatey\bin\choco.exe"
 
 $install_packages_bat = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\install_packages.bat"
 
-#if (!(Test-Path $install_packages_bat)) {
-#	Set-Content -Path $install_packages_bat -Value "$choco_exe install postman googlechrome -y"
-#}
-
-$dockerPath = "$env:ProgramFiles\docker"
-if (!(Test-Path $dockerPath)) {
-	Set-Content -Path dockerPath -Value "$choco_exe install docker-desktop -y"
+if (!(Test-Path $install_packages_bat)) {
+	Set-Content -Path $install_packages_bat -Value "$choco_exe install docker-desktop postman googlechrome -y"
 }
+
+#$dockerPath = "$env:ProgramFiles\docker"
+#if (!(Test-Path $dockerPath)) {
+#	Set-Content -Path dockerPath -Value "$choco_exe install docker-desktop -y"
+#}
 
 <#
 if (!(Test-Path $dockerPath)) {
