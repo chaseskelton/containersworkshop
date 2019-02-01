@@ -42,12 +42,12 @@ Invoke-Expression ((New-Object Net.WebClient).DownloadString('https://chocolatey
 
 ## Add startup bat to install additional packages on sign in
 $choco_exe = "C:\ProgramData\chocolatey\bin\choco.exe"
+C:\ProgramData\chocolatey\bin\choco.exe install docker-desktop -y
 
 $install_packages_bat = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\install_packages.bat"
 
 if (!(Test-Path $install_packages_bat)) {
-	Set-Content -Path $install_packages_bat -Value "$choco_exe install docker-desktop postman googlechrome -y"
-	$wshell = New-Object -ComObject Wscript.Shell -ErrorAction Stop
-	$wshell.Popup("Click OK to restart your Virtual Machine Rebooting",0,"Install Script",0)
-	Restart-Computer
+	Set-Content -Path $install_packages_bat -Value "$choco_exe install postman googlechrome -y"
 }
+
+Restart-Computer
