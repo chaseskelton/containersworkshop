@@ -50,4 +50,7 @@ if (!(Test-Path $install_packages_bat)) {
 	Set-Content -Path $install_packages_bat -Value "$choco_exe install postman googlechrome -y"
 }
 
+# install user into docker user group
+net localgroup docker-users sysadmin /add
+
 Restart-Computer
