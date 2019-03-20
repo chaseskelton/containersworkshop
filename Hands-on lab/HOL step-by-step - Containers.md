@@ -17,94 +17,83 @@ The names of manufacturers, products, or URLs are provided for informational pur
 Microsoft and the trademarks listed at [https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx](https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx) are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
 
-
 # Contents
 
-Windows Containers hands-on lab        5
+Windows Containers hands-on lab
 
-Abstract and learning objectives        5
+[Abstract and learning objectives](#Abstract-and-learning-objectives)
 
-Overview        5
+[Overview](#Overview)
 
-Requirements        6
+[Requirements](#Requirements)
 
-Before the hands-on lab        7
+[Before the hands-on lab](#Before-the-hands-on-lab)
 
-Help references        7
+ - [Task 1: Set up the environment](#Task-1-Set-up-the-environment)
 
-Task 1: Set up the environment        7
+ - [Task 2: Validate you can connect to the Development Environment](#Task-2-Validate-you-can-connect-to-the-Development-Environment)
 
-Task 2: Validate you can connect to the Development Environment        12
+ - [Task 3: Verify Docker for Desktop is Installed](#Task-3-Verify-Docker-for-Desktop-is-Installed)
 
-Task 3: Verify Docker for Desktop is Installed        13
+ - [Task 4: Launch Visual Studio](#Task-4-Launch-Visual-Studio)
 
-Task 4: Launch Visual Studio        14
+[Exercise 1: Introduction to Docker](#Exercise-1-Introduction-to-Docker)
 
-Exercise 1: Introduction to Docker        18
+ - [Task 1: Run Command](#Task-1-Run-Command)
 
-Task 1: Run Command        18
+ - [Task 2: PS Command](#Task-2-PS-Command)
 
-Task 2: PS Command        18
+ - [Task 3: Stop Command](#Task-3-Stop-Command)
 
-Task 3: Stop Command        20
+ - [Task 4: Exec Command](#Task-4-Exec-Command)
 
-Task 4: Exec Command        20
+ - [Task 5: Environment Variables](#Task-5-Environment-Variables)
 
-Task 5: Environment Variables        21
+ - [Task 6: Images Command](#Task-6-Images-Command)
 
-Task 5: Images Command        22
+ - [Task 7: RM Command](#Task-7-RM-Command)
 
-Task 6: RM Command        23
+ - [Task 8: RMI Command](#Task-8-RMI-Command)
 
-Task 7: RMI Command        23
+ - [Task 9: System Command](#Task-9-System-Command)
 
-Task 8: System Command        23
+ - [Task 10: Dockerfile](#Task-10-Dockerfile)
 
-Task 9: Dockerfile        24
+[Exercise 2: Containerize Legacy Solution](#Exercise-2-Containerize-Legacy-Solution)
 
-Exercise 2: Containerize Legacy Solution        26
+ - [Task 1: Add Docker Support into Visual Studio](#Task-1-Add-Docker-Support-into-Visual-Studio)
 
-Prerequisites        27
+ - [Task 2: Add Docker Support into Visual Studio Code](#Task-2:-Add-Docker-Support-into-Visual-Studio-Code)
 
-Help references        27
+ - [Task 3: Add Azure CLI](#Task-3-Add-Azure-CLI)
 
-Task 1: Add Docker Support into Visual Studio        28
+ - [Task 4: Create a Dockerfile &amp; Install Base Container Image](#Task-4-Create-a-Dockerfile-&amp;-Install-Base-Container-Image)
 
-Task 2: Add Docker Support into Visual Studio Code        28
+ - [Task 5: Create Docker Images](#Task-5-Create-Docker-Images)
 
-Task 3: Add Azure CLI        28
+ - [Task 6: Run a containerized application](#Task-6-Run-a-containerized-application)
 
-Task 4: Create a Dockerfile &amp; Install Base Container Image        29
+ - [Task 7: Debug Solution in Docker Locally](#Task-7-Debug-Solution-in-Docker-Locally)
 
-Task 5: Create Docker Images        29
+[Exercise 3: Deploy Solution to Azure](#Exercise-3-Deploy-Solution-to-Azure)
 
-Task 6: Run a containerized application        29
+ - [Task 1: Create Azure Container Registry](#Task-1-Create-Azure-Container-Registry)
 
-Task 7: Debug Solution in Docker Locally        29
+ - [Task 2: Push Image to Azure Container Registry](#Task-2-Push-Image-to-Azure-Container-Registry)
 
-Exercise 3: Deploy Solution to Azure        30
+ - [Task 3: Deploy to Azure Container Instance](#Task-3-Deploy-to-Azure-Containe-Instance)
 
-Task 1: Create Azure Container Registry        30
+ - [Task 4: Deploy to Azure Web App](#Task-4-Deploy-to-Azure-Web-App)
 
-Task 2: Push Image to Azure Container Registry        30
+[Exercise 4: Setting up a CI/CD Pipeline for Containers](#Exercise-4-Setting-up-a-CI/CD-Pipeline-for-Containers)
 
-Task 3: Deploy to Azure Container Instance        31
+ - [Task 1: DevOps Project](#Task-1-DevOps-Project)
 
-Task 4: Deploy to Azure Web App        31
+ - [Task 2: Azure DevOps Pipeline](#Task-2-Azure-DevOps-Pipeline)
 
-Exercise 4: Setting up a CI/CD Pipeline for Containers        31
+[After the hands-on workshop](#After-the-hands-on-workshop)
 
-Prerequisites        31
-
-Help references        31
-
-Task 1: DevOps Project        32
-
-Task 2: Azure DevOps Pipeline        32
-
-After the hands-on workshop        33
-
-Task 1: Delete the Resource Group in which you placed your Azure resources.        33
+ - [Task 1: Delete the Resource Group in which you placed your Azure resources.](#Task-1-Delete-the-Resource-Group-in-which-you-placed-your-Azure-resources.)
 
 #
 # Windows Containers
@@ -112,6 +101,7 @@ Task 1: Delete the Resource Group in which you placed your Azure resources.     
 #
 
 # hands-on lab
+
 
 ## Abstract and learning objectives
 
@@ -369,7 +359,7 @@ docker exec -it nginx /bin/bash
 
 <img src="./media/22-dockerexecbinbash.png" width=600>
 
-#### Task 5: Images Command
+#### Task 6: Images Command
 
 All the images we have installed locally in our local repository can be listed be running the **images list** command
 
@@ -383,7 +373,7 @@ REPOSITORY / IMAGE NAME : TAG
 
 Notice the size of the Ubuntu image that is pulled down is only 86 MB. This is a small image size, especially when compared to Microsoft Nano Server which is over 4 GB.
 
-#### Task 6: RM Command
+#### Task 7: RM Command
 
 To remove a container, use the RM command and then the name of the ID or the name of the container. Before a container can be removed, it must be stopped and cannot be running. Use the &quot;ps --all&quot; command to see a list of all containers that have ran.
 
@@ -400,13 +390,13 @@ docker ps -a -f status=exited
 
 From the image list, notice the NAMES of the containers. Since we run these containers and didn&#39;t pass in the &#39;--name&#39; flag, Docker autogenerated these names. If you want to refer to your Containers by names, its recommended you pass in the name when creating.
 
-#### Task 7: RMI Command
+#### Task 8: RMI Command
 
 If we are no longer using an image we pulled down from a repository, we can remove it from our local repository so It no longer consumes storage space. The RMI command can remove an image from the repository provided it the base image no longer is being used by a running container.
 
 docker rmi ubuntu
 
-#### Task 8: System Command
+#### Task 9: System Command
 
 If you&#39;re a done with docker and want to clean up any resources such as images (used and unused), containers, volumes, and networks, the prune command will purge everything.
 
@@ -419,7 +409,7 @@ docker system prune -a
 <img src="./media/27-dockersystemprune2.png" width=500>
 
 
-#### Task 9: Dockerfile
+#### Task 10: Dockerfile
 
 A Dockerfile is used to instruct docker how to create an image that is stored in a registry. Here we&#39;ll create our first Docker image file using a .NET ASP.Net Core MVC application.
 
