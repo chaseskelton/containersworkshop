@@ -19,7 +19,7 @@ Microsoft and the trademarks listed at [https://www.microsoft.com/en-us/legal/in
 
 # Contents
 
-Windows Containers hands-on lab
+[Windows Containers hands-on lab](#Windows-Containers)
 
 [Abstract and learning objectives](#Abstract-and-learning-objectives)
 
@@ -63,7 +63,7 @@ Windows Containers hands-on lab
 
  - [Task 1: Add Docker Support into Visual Studio](#Task-1-Add-Docker-Support-into-Visual-Studio)
 
- - [Task 2: Add Docker Support into Visual Studio Code](#Task-2:-Add-Docker-Support-into-Visual-Studio-Code)
+ - [Task 2: Add Docker Support into Visual Studio Code](#Task-2-Add-Docker-Support-into-Visual-Studio-Code)
 
  - [Task 3: Add Azure CLI](#Task-3-Add-Azure-CLI)
 
