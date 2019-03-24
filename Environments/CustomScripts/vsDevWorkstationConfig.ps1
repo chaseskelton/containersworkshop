@@ -37,20 +37,26 @@ $env:Path += ";C:\Program Files\dotnet\"
 $env:Path += ";C:\Program Files\Microsoft SQL Server\130\Tools\Binn\"
 $env:Path += ";C:\Program Files\Git\cmd"
 
+
 ## Install Chocolatey and packages
 Invoke-Expression ((New-Object Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 
 
 ## Add startup bat to install additional packages on sign in
 $choco_exe = "C:\ProgramData\chocolatey\bin\choco.exe"
+
 C:\ProgramData\chocolatey\bin\choco.exe install docker-desktop -y
 
 $install_packages_bat = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\install_packages.bat"
 
 if (!(Test-Path $install_packages_bat)) {
-	Set-Content -Path $install_packages_bat -Value "$choco_exe install postman googlechrome -y"
+	Set-Content -Path $install_packages_bat -Value "$choco_exe install postman -y"
+	Add-Content -Path $install_packages_bat -Value "$choco_exe install googlechrome -y"
+	Add-Content -Path $install_packages_bat -Value "$choco_exe install vscode -y"
+	Add-Content -Path $install_packages_bat -Value "powershell.exe -Command code --install-extension PeterJausovec.vscode-docker --force"
+	## Add-Content -Path $install_packages_bat -Value "$choco_exe install docker-desktop -y"
 }
 
 # install user into docker user group
 net localgroup docker-users sysadmin /add
 
-Restart-Computer
+Restart-Computer 
