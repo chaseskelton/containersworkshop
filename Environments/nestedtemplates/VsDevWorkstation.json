@@ -48,7 +48,6 @@
   "variables": {
     "VsDevWorkstationImagePublisher": "MicrosoftVisualStudio",
     "VsDevWorkstationImageOffer": "VisualStudio",
-    "VsDevWorkstationOSDiskName": "VsDevWorkstationOSDisk",
     "VsDevWorkstationVmSize": "Standard_D2_v3",
     "VsDevWorkstationVnetID": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "VsDevWorkstationSubnetRef": "[concat(variables('VsDevWorkstationVnetID'), '/subnets/', 'Subnet-1')]",
@@ -138,7 +137,7 @@
           "name": "vsDevWorkstationConfig",
           "type": "extensions",
           "location": "[resourceGroup().location]",
-          "apiVersion": "2016-03-30",
+          "apiVersion": "2016-04-30-preview",
           "dependsOn": [
             "[resourceId('Microsoft.Compute/virtualMachines', parameters('VsDevWorkstationName'))]"
           ],
