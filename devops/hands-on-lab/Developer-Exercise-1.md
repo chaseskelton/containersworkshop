@@ -5,7 +5,7 @@ Containers and DevOps - Developer edition
 </div>
 
 <div class="MCWHeader2">
-Hands-on lab step-by-step - Exercise 1
+Hands-on lab step-by-step - Exercise 1 
 </div>
 
 <div class="MCWHeader3">
